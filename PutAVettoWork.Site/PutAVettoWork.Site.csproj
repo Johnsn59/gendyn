@@ -5,7 +5,29 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Admin\Controllers\" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.0-preview.2.20120.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.0-preview.2.20120.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.0-preview.2.20120.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Views\Categories\" />
+    <Folder Include="Areas\Views\Jobs\" />
+    <Folder Include="Areas\Views\Users\" />
+    <Folder Include="Areas\Views\Roles\" />
+    <Folder Include="Areas\Views\Pages\" />
+    <Folder Include="Views\Account\" />
+    <Folder Include="Views\Cart\" />
+    <Folder Include="Views\Jobs\" />
+    <Folder Include="Views\Pages\" />
+    <Folder Include="Views\Shared\Components\Categories\" />
+    <Folder Include="Views\Shared\Components\Main\" />
+    <Folder Include="wwwroot\Images\" />
+    <Folder Include="wwwroot\Media\" />
   </ItemGroup>
 
 

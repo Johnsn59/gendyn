@@ -5,9 +5,13 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using PutAVettoWork.Site.Data;
+using PutAVettoWork.Site.Models;
 
 namespace PutAVettoWork.Site
 {
@@ -24,6 +28,20 @@ namespace PutAVettoWork.Site
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddRouting(options => options.LowercaseUrls = true);
+            services.AddControllersWithViews();
+
+            services.AddDbContext<GenDynContext>(options => options.UseSqlServer(Configuration.GetConnectionString("GenDynContext")));
+
+            services.AddIdentity<AppUser, IdentityRole>(options => {
+                options.Password.RequiredLength = 4;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireDigit = false;
+            })
+                    .AddEntityFrameworkStores<GenDynContext>()
+                    .AddDefaultTokenProviders();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,11 +61,31 @@ namespace PutAVettoWork.Site
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseSession();
 
+
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute(
+                    "pages",
+                    "{slug?}",
+                    defaults: new { controller = "Pages", action = "Page" }
+                );
+
+                endpoints.MapControllerRoute(
+                    "products",
+                    "products/{categorySlug}",
+                    defaults: new { controller = "Jobs", action = "JobsByCategory" }
+                );
+
+                endpoints.MapControllerRoute(
+                    name: "areas",
+                    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+                );
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
