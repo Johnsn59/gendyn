@@ -144,3 +144,75 @@ li.nav-item.logout {
     right: 10px;
     list-style: none;
 }
+
+/* This is the CSS for the website created by Jacob Crafton */
+
+body {
+    font-family: 'Lato', sans-serif;
+    color: black;
+    background-color:whitesmoke;
+}
+
+#header {
+    background: url(https://images.unsplash.com/photo-1464660756002-dd9f9a92b01b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=734&q=80);
+    background-position: center;
+    background-size: cover;
+}
+
+#header h1 {
+    text-shadow: 0px 4px 3px rgba(0, 0, 0, 0.4),
+    0px 8px 13px rgba(0, 0, 0, 0.1),
+    0px 18px 23px rgba(0, 0, 0, 0.1);
+    color: whitesmoke;
+}
+
+#header h3 {
+    text-shadow: 0px 4px 3px rgba(0, 0, 0, 0.4),
+    0px 8px 13px rgba(0, 0, 0, 0.1),
+    0px 18px 23px rgba(0, 0, 0, 0.1);
+    color: whitesmoke;
+}
+
+#partners li {
+    color:black;
+}
+
+#partner .lead {
+    text-align: center;
+}
+
+card {
+    margin-top: 10px;
+}
+
+.navbar {
+    background-color: black;
+}
+
+.navbar-brand {
+    font-weight: 900;
+    color: white;
+}
+
+.nav-link {
+    color: white;
+}
+
+.card h5 {
+    color: black;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+hr {
+    border-top: 2px solid black;
+    width: auto;
+}
+
+.faces {
+    border-radius: 100%;
+}
+ 
+.nav .btn {
+    color: white;
+}
