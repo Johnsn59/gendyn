@@ -20,11 +20,11 @@ namespace PutAVettoWork.Site.Controllers
             this.context = context;
         }
 
-        // GET /products
+        // GET /jobs
         public async Task<IActionResult> Index(int p = 1)
         {
             int pageSize = 6;
-            var products = context.Jobs.OrderByDescending(x => x.Id)
+            var jobs = context.Jobs.OrderByDescending(x => x.Id)
                                             .Skip((p - 1) * pageSize)
                                             .Take(pageSize);
 
@@ -32,17 +32,17 @@ namespace PutAVettoWork.Site.Controllers
             ViewBag.PageRange = pageSize;
             ViewBag.TotalPages = (int)Math.Ceiling((decimal)context.Jobs.Count() / pageSize);
 
-            return View(await products.ToListAsync());
+            return View(await jobs.ToListAsync());
         }
 
-        // GET /products/category
+        // GET /jobs/category
         public async Task<IActionResult> JobsByCategory(string categorySlug, int p = 1)
         {
             Category category = await context.Categories.Where(x => x.Slug == categorySlug).FirstOrDefaultAsync();
             if (category == null) return RedirectToAction("Index");
 
             int pageSize = 6;
-            var products = context.Jobs.OrderByDescending(x => x.Id)
+            var jobs = context.Jobs.OrderByDescending(x => x.Id)
                                             .Where(x => x.CategoryId == category.Id)
                                             .Skip((p - 1) * pageSize)
                                             .Take(pageSize);
@@ -53,7 +53,7 @@ namespace PutAVettoWork.Site.Controllers
             ViewBag.CategoryName = category.Name;
             ViewBag.CategorySlug = categorySlug;
 
-            return View(await products.ToListAsync());
+            return View(await jobs.ToListAsync());
         }
     }
 }

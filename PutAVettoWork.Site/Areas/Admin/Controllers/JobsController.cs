@@ -29,7 +29,7 @@ namespace PutAVettoWork.Site.Areas.Admin.Controllers
         public async Task<IActionResult> Index(int p = 1)
         {
             int pageSize = 6;
-            var products = context.Jobs.OrderByDescending(x => x.Id)
+            var jobs = context.Jobs.OrderByDescending(x => x.Id)
                                             .Include(x => x.Category)
                                             .Skip((p - 1) * pageSize)
                                             .Take(pageSize);
@@ -38,7 +38,7 @@ namespace PutAVettoWork.Site.Areas.Admin.Controllers
             ViewBag.PageRange = pageSize;
             ViewBag.TotalPages = (int)Math.Ceiling((decimal)context.Jobs.Count() / pageSize);
 
-            return View(await products.ToListAsync());
+            return View(await jobs.ToListAsync());
         }
 
         // GET /admin/jobs/details/id
@@ -75,14 +75,14 @@ namespace PutAVettoWork.Site.Areas.Admin.Controllers
                 var slug = await context.Jobs.FirstOrDefaultAsync(x => x.Slug == job.Slug);
                 if (slug != null)
                 {
-                    ModelState.AddModelError("", "The product already exists.");
+                    ModelState.AddModelError("", "The job already exists.");
                     return View(job);
                 }
 
                 string imageName = "noimage.png";
                 if (job.ImageUpload != null)
                 {
-                    string uploadsDir = Path.Combine(webHostEnvironment.WebRootPath, "media/products");
+                    string uploadsDir = Path.Combine(webHostEnvironment.WebRootPath, "media/job_images");
                     imageName = Guid.NewGuid().ToString() + "_" + job.ImageUpload.FileName;
                     string filePath = Path.Combine(uploadsDir, imageName);
                     FileStream fs = new FileStream(filePath, FileMode.Create);
@@ -131,13 +131,13 @@ namespace PutAVettoWork.Site.Areas.Admin.Controllers
                 var slug = await context.Jobs.Where(x => x.Id != id).FirstOrDefaultAsync(x => x.Slug == job.Slug);
                 if (slug != null)
                 {
-                    ModelState.AddModelError("", "The product already exists.");
+                    ModelState.AddModelError("", "The job already exists.");
                     return View(job);
                 }
 
                 if (job.ImageUpload != null)
                 {
-                    string uploadsDir = Path.Combine(webHostEnvironment.WebRootPath, "media/products");
+                    string uploadsDir = Path.Combine(webHostEnvironment.WebRootPath, "media/job_images");
 
                     if (!string.Equals(job.Image, "noimage.png"))
                     {
@@ -167,7 +167,7 @@ namespace PutAVettoWork.Site.Areas.Admin.Controllers
             return View(job);
         }
 
-        // GET /admin/products/delete/5
+        // GET /admin/jobs/delete/id
         public async Task<IActionResult> Delete(int id)
         {
             Job job = await context.Jobs.FindAsync(id);
@@ -180,7 +180,7 @@ namespace PutAVettoWork.Site.Areas.Admin.Controllers
             {
                 if (!string.Equals(job.Image, "noimage.png"))
                 {
-                    string uploadsDir = Path.Combine(webHostEnvironment.WebRootPath, "media/products");
+                    string uploadsDir = Path.Combine(webHostEnvironment.WebRootPath, "media/job_images");
                     string oldImagePath = Path.Combine(uploadsDir, job.Image);
                     if (System.IO.File.Exists(oldImagePath))
                     {

@@ -51,7 +51,7 @@ namespace PutAVettoWork.Site.Areas.Admin.Controllers
             return View();
         }
 
-        // GET /admin/roles/edit/5
+        // GET /admin/roles/edit/id
         public async Task<IActionResult> Edit(string id)
         {
             IdentityRole role = await roleManager.FindByIdAsync(id);
@@ -65,7 +65,7 @@ namespace PutAVettoWork.Site.Areas.Admin.Controllers
                 list.Add(user);
             }
 
-            return View(new RoleEdit
+            return View(new EditRole
             {
                 Role = role,
                 Members = members,
@@ -73,23 +73,23 @@ namespace PutAVettoWork.Site.Areas.Admin.Controllers
             });
         }
 
-        // POST /admin/roles/edit/5
+        // POST /admin/roles/edit/id
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(RoleEdit roleEdit)
+        public async Task<IActionResult> Edit(EditRole editRole)
         {
             IdentityResult result;
 
-            foreach (string userId in roleEdit.AddIds ?? new string[] { })
+            foreach (string userId in editRole.AddIds ?? new string[] { })
             {
                 AppUser user = await userManager.FindByIdAsync(userId);
-                result = await userManager.AddToRoleAsync(user, roleEdit.RoleName);
+                result = await userManager.AddToRoleAsync(user, editRole.RoleName);
             }
 
-            foreach (string userId in roleEdit.DeleteIds ?? new string[] { })
+            foreach (string userId in editRole.DeleteIds ?? new string[] { })
             {
                 AppUser user = await userManager.FindByIdAsync(userId);
-                result = await userManager.RemoveFromRoleAsync(user, roleEdit.RoleName);
+                result = await userManager.RemoveFromRoleAsync(user, editRole.RoleName);
             }
 
             return Redirect(Request.Headers["Referer"].ToString());

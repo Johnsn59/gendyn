@@ -27,6 +27,8 @@ namespace PutAVettoWork.Site
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMemoryCache();
+            services.AddSession();
             services.AddControllersWithViews();
             services.AddRouting(options => options.LowercaseUrls = true);
             services.AddControllersWithViews();
@@ -40,8 +42,8 @@ namespace PutAVettoWork.Site
                 options.Password.RequireUppercase = false;
                 options.Password.RequireDigit = false;
             })
-                    .AddEntityFrameworkStores<GenDynContext>()
-                    .AddDefaultTokenProviders();
+                .AddEntityFrameworkStores<GenDynContext>()
+                .AddDefaultTokenProviders();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -76,8 +78,8 @@ namespace PutAVettoWork.Site
                 );
 
                 endpoints.MapControllerRoute(
-                    "products",
-                    "products/{categorySlug}",
+                    "jobs",
+                    "jobs/{categorySlug}",
                     defaults: new { controller = "Jobs", action = "JobsByCategory" }
                 );
 

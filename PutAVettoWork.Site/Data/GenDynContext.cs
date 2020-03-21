@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using PutAVettoWork.Site.Models;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PutAVettoWork.Site.Data
 {
-    public class GenDynContext : DbContext
+    public class GenDynContext : IdentityDbContext<AppUser>
     {
         public GenDynContext(DbContextOptions<GenDynContext> options)
             : base(options)

@@ -4,6 +4,8 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using PutAVettoWork.Site.Data;
 
 namespace PutAVettoWork.Site.Models
 {
@@ -24,5 +26,9 @@ namespace PutAVettoWork.Site.Models
 
         [ForeignKey("CategoryId")]
         public virtual Category Category { get; set; }
+
+        [NotMapped]
+        [FileExtension]
+        public IFormFile ImageUpload { get; set; }
     }
 }
