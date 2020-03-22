@@ -8,49 +8,58 @@
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
-    <header>
-        <nav class="navbar sticky-top navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Put A Vet to Work</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1 justify-content-end">
-                        @if (User?.Identity?.IsAuthenticated ?? false)
-                        {
-                            <li class="nav-item">
-                                <a asp-controller="Account" asp-action="Edit" class="btn btn-primary">My Account</a>
-                            </li>
-                            <li class="nav-item ml-1">
-                                <a asp-controller="Account" asp-action="Logout" class="btn btn-danger">Hi, @User.Identity.Name, Log out</a>
-                            </li>
-                            @if (User.IsInRole("admin") || User.IsInRole("editor"))
-                            {
-                                <li class="nav-item ml-1">
-                                    <a asp-area="Admin" asp-controller="Pages" asp-action="Index" class="btn btn-success">Admin Area</a>
-                                </li>
-                            }
-                        }
-                        else
-                        {
-                            <li class="nav-item">
-                                <a asp-controller="Account" asp-action="Login" class="btn btn-success">Log in</a>
-                            </li>
-                            <li class="nav-item ml-1">
-                                <a asp-controller="Account" asp-action="Register" class="btn btn-primary">Register</a>
-                            </li>
-                        }
-                    </ul>
 
-                    <ul class="navbar-nav flex-grow-1">
-                        @await Component.InvokeAsync("Main")
-                    </ul>
-                </div>
+    <nav class="navbar sticky-top navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Put A Vet to Work</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="nav navbar-nav ml-auto">
+                    @if (User?.Identity?.IsAuthenticated ?? false)
+                    {
+                        <li class="nav-item">
+                            <a asp-controller="Account" asp-action="Edit" class="btn btn-primary">My Account</a>
+                        </li>
+                        <li class="nav-item ml-1">
+                            <a asp-controller="Account" asp-action="Logout" class="btn btn-danger">Hi, @User.Identity.Name, Log out</a>
+                        </li>
+                        @if (User.IsInRole("admin") || User.IsInRole("editor"))
+                        {
+                            <li class="nav-item ml-1">
+                                <a asp-area="Admin" asp-controller="Pages" asp-action="Index" class="btn btn-success">Admin Area</a>
+                            </li>
+                        }
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a asp-controller="Account" asp-action="Login" class="btn btn-success">Log in</a>
+                        </li>
+                        <li class="nav-item ml-1">
+                            <a asp-controller="Account" asp-action="Register" class="btn btn-primary">Register</a>
+                        </li>
+                    }
+                </ul>
+
+                <ul class="navbar-nav flex-grow-1">
+                    @await Component.InvokeAsync("Main")
+                </ul>
             </div>
-        </nav>
-    </header>
+        </div>
+    </nav>
+
+
+    <!-- HEADER -->
+    <section id="header" class="jumbotron text-center mb-5">
+        <h1 class="display-2">Put A Veteran to Work</h1>
+        <h3 class="">We Are Here for Those Who WERE There for Us!</h3>
+    </section>
+    <!-- END HEADER -->
+
+
     <div class="container">
         <main role="main" class="pb-3">
             <partial name="_NotificationPartial" />
@@ -64,6 +73,22 @@
             </div>
         </main>
     </div>
+
+    <!-- STAY CONNECTED -->
+    <div class="container my-5">
+        <div id="stayconnected" class="text-center">
+            <hr class="my-5">
+            <h3>Stay Connected</h3>
+            <div class="d-flex justify-content-around pt-4">
+                <a class="btn btn-lg btn-outline-dark" href="https://www.facebook.com/groups/putveteranstowork/"><i class="fab fa-facebook-square"></i> Join our Facebook Page!</a>
+                <a class="btn btn-lg btn-outline-dark" href="https://www.linkedin.com/groups/8615484/"><i class="fab fa-linkedin"></i> Find us on Linkedin!</a>
+                <a class="btn btn-lg btn-outline-dark" href="https://twitter.com/PutAVetToWork"><i class="fab fa-twitter"></i> Follow us on Twitter!</a>
+            </div>
+        </div>
+    </div>
+    <hr class="mt-5">
+    <!-- STAY CONNTECTED END -->
+
 
     <footer class="border-top footer text-muted">
         <div class="container">
