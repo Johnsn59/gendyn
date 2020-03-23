@@ -217,3 +217,7 @@ hr {
 .nav .btn {
     color: white;
 }
+
+.navright {
+    float: right;
+}

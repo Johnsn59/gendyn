@@ -35,10 +35,10 @@
                     }
                     else
                     {
-                        <li class="nav-item">
+                        <li class="nav-item navright">
                             <a asp-controller="Account" asp-action="Login" class="btn btn-success">Log in</a>
                         </li>
-                        <li class="nav-item ml-1">
+                        <li class="nav-item ml-1 navright">
                             <a asp-controller="Account" asp-action="Register" class="btn btn-primary">Register</a>
                         </li>
                     }
@@ -74,20 +74,24 @@
         </main>
     </div>
 
-    <!-- STAY CONNECTED -->
-    <div class="container my-5">
-        <div id="stayconnected" class="text-center">
-            <hr class="my-5">
-            <h3>Stay Connected</h3>
-            <div class="d-flex justify-content-around pt-4">
-                <a class="btn btn-lg btn-outline-dark" href="https://www.facebook.com/groups/putveteranstowork/"><i class="fab fa-facebook-square"></i> Join our Facebook Page!</a>
-                <a class="btn btn-lg btn-outline-dark" href="https://www.linkedin.com/groups/8615484/"><i class="fab fa-linkedin"></i> Find us on Linkedin!</a>
-                <a class="btn btn-lg btn-outline-dark" href="https://twitter.com/PutAVetToWork"><i class="fab fa-twitter"></i> Follow us on Twitter!</a>
+    @if (!User.IsInRole("admin") || !User.IsInRole("editor"))
+    {
+        <!-- STAY CONNECTED -->
+        <div class="container my-5">
+            <div id="stayconnected" class="text-center">
+                <hr class="my-5">
+                <h3>Stay Connected</h3>
+                <div class="d-flex justify-content-around pt-4">
+                    <a class="btn btn-lg btn-outline-dark" href="https://www.facebook.com/groups/putveteranstowork/"><i class="fab fa-facebook-square"></i> Join our Facebook Page!</a>
+                    <a class="btn btn-lg btn-outline-dark" href="https://www.linkedin.com/groups/8615484/"><i class="fab fa-linkedin"></i> Find us on Linkedin!</a>
+                    <a class="btn btn-lg btn-outline-dark" href="https://twitter.com/PutAVetToWork"><i class="fab fa-twitter"></i> Follow us on Twitter!</a>
+                </div>
             </div>
         </div>
-    </div>
-    <hr class="mt-5">
-    <!-- STAY CONNTECTED END -->
+        <hr class="mt-5">
+        <!-- STAY CONNTECTED END -->
+    }
+
 
 
     <footer class="border-top footer text-muted">
