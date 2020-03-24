@@ -29,23 +29,23 @@ namespace PutAVettoWork.Site.Models
                     },
                     new Page
                     {
-                        Title = "About Us",
-                        Slug = "about-us",
-                        Content = "about us page",
+                        Title = "Who We Are",
+                        Slug = "who-we-are",
+                        Content = "Who We Are",
                         Sorting = 100
                     },
                     new Page
                     {
-                        Title = "Services",
-                        Slug = "services",
-                        Content = "services page",
+                        Title = "Events",
+                        Slug = "events",
+                        Content = "events page",
                         Sorting = 100
                     },
                     new Page
                     {
-                        Title = "Contact",
-                        Slug = "contact",
-                        Content = "contact page",
+                        Title = "Careers",
+                        Slug = "careers",
+                        Content = "careers page",
                         Sorting = 100
                     }
                 );
