@@ -1,19 +1,20 @@
-﻿@model IEnumerable<Category>
+﻿@model IEnumerable<PutAVettoWork.Site.Models.Page>
 
 @{
-    ViewData["Title"] = "Categories";
+    ViewData["Title"] = "Index";
 }
 
-<h1>Categories</h1>
+<h1>Index</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table sorting" id="categories">
+
+<table class="table sorting" id="pages">
     <thead>
-        <tr>
+        <tr class="home">
             <th>
-                Name
+                Title
             </th>
             <th>
                 Slug
@@ -24,16 +25,20 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr id="id_@item.Id">
+            <tr id="id_@item.Id" class="@item.Slug">
                 <td>
-                    @item.Name
+                    @item.Title
                 </td>
                 <td>
                     @item.Slug
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a class="confirmDeletion" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    @if (item.Slug != "home")
+                    {
+                        <a class="confirmDeletion" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    }
                 </td>
             </tr>
         }
@@ -42,13 +47,12 @@
 
 @section Scripts {
     <script>
-        $("table#categories tbody").sortable({
+        $("table#pages tbody").sortable({
             items: "tr:not(.home)",
             placeholder: "ui-state-highlight",
             update: function () {
-                let ids = $("table#categories tbody").sortable("serialize");
-                let url = "/admin/categories/reorder";
-
+                let ids = $("table#pages tbody").sortable("serialize");
+                let url = "/admin/pages/reorder";
                 $.post(url, ids, function () { });
             }
         })

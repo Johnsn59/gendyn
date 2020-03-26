@@ -28,7 +28,10 @@ namespace PutAVettoWork.Site
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMemoryCache();
-            services.AddSession();
+            services.AddSession(options => 
+            { 
+            
+            });
             services.AddControllersWithViews();
             services.AddRouting(options => options.LowercaseUrls = true);
             services.AddControllersWithViews();
@@ -66,6 +69,8 @@ namespace PutAVettoWork.Site
             app.UseSession();
 
 
+
+
             app.UseAuthentication();
             app.UseAuthorization();
 
@@ -91,6 +96,8 @@ namespace PutAVettoWork.Site
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+
             });
         }
     }

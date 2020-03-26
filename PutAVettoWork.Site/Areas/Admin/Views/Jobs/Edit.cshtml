@@ -1,4 +1,4 @@
-﻿@model Job
+﻿@model PutAVettoWork.Site.Models.Job
 
 @{
     ViewData["Title"] = "Edit Job";
@@ -67,7 +67,6 @@
 
     <script>
             CKEDITOR.replace("Description");
-
             $("#ImageUpload").change(function () {
                 readURL(this);
             });

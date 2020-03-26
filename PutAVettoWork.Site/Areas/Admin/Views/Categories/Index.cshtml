@@ -1,20 +1,19 @@
-﻿@model IEnumerable<Page>
+﻿@model IEnumerable<Category>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Categories";
 }
 
-<h1>Index</h1>
+<h1>Categories</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-
-<table class="table sorting" id="pages">
+<table class="table sorting" id="categories">
     <thead>
-        <tr class="home">
+        <tr>
             <th>
-                Title
+                Name
             </th>
             <th>
                 Slug
@@ -25,20 +24,16 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr id="id_@item.Id" class="@item.Slug">
+            <tr id="id_@item.Id">
                 <td>
-                    @item.Title
+                    @item.Name
                 </td>
                 <td>
                     @item.Slug
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    @if (item.Slug != "home")
-                    {
-                        <a class="confirmDeletion" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                    }
+                    <a class="confirmDeletion" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                 </td>
             </tr>
         }
@@ -47,13 +42,12 @@
 
 @section Scripts {
     <script>
-        $("table#pages tbody").sortable({
+        $("table#categories tbody").sortable({
             items: "tr:not(.home)",
             placeholder: "ui-state-highlight",
             update: function () {
-                let ids = $("table#pages tbody").sortable("serialize");
-                let url = "/admin/pages/reorder";
-
+                let ids = $("table#categories tbody").sortable("serialize");
+                let url = "/admin/categories/reorder";
                 $.post(url, ids, function () { });
             }
         })
