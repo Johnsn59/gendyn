@@ -111,9 +111,9 @@ table.sorting tr:not(.home) {
     border: 1px dashed #ccc;
 }
 
-a:hover {
-    opacity: .3 !important;
-    
+a.nav-link:hover {
+    /*opacity: .3 !important;*/
+    background-color: #5a5656;
 }
 
 div.ajaxbg {
