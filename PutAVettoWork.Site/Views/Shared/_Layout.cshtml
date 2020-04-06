@@ -39,17 +39,16 @@
                     else
                     {
                         <li class="nav-item navright">
-                            <a asp-controller="Account" asp-action="Login" class="btn btn-success">Log in</a>
+                            <a asp-controller="Account" asp-action="Login" class="nav-link text-dark">Log in</a>
                         </li>
                         @*<li class="nav-item ml-1 navright">
-                    <a asp-controller="Account" asp-action="Register" class="btn btn-primary">Register</a>
-                </li>*@
+                                <a asp-controller="Account" asp-action="Register" class="btn btn-primary">Register</a>
+                            </li>*@
                     }
                 </ul>
             </div>
         </div>
     </nav>
-
 
     <!-- HEADER -->
     <section id="header" class="jumbotron text-center mb-5">
@@ -60,8 +59,8 @@
 
 
     <div class="container">
-            <partial name="_NotificationPartial" />
-            @RenderBody()   
+        <partial name="_NotificationPartial" />
+        @RenderBody()
     </div>
 
     @if (!User.IsInRole("admin") || !User.IsInRole("editor"))
@@ -86,7 +85,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2019 - Put a Vet to Work - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2020 - Put Veterans To Work 
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

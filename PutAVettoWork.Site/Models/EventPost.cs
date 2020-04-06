@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PutAVettoWork.Site.Models
 {
-    public class Event
+    public class EventPost
     {
         public int Id { get; set; }
 
@@ -22,7 +22,8 @@ namespace PutAVettoWork.Site.Models
         [Required, MinLength(2, ErrorMessage = "Minimum of 2 characters")]
         public string Content { get; set; }
 
-        [Range(1, int.MaxValue, ErrorMessage = "You must choose a category")]
+        [Range(1, int.MaxValue, ErrorMessage = "Please choose a category!")]
+        [Display(Name = "Category")]
         public int CategoryId { get; set; }
 
         [ForeignKey("CategoryId")]

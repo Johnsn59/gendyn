@@ -240,38 +240,6 @@ namespace PutAVettoWork.Site.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("PutAVettoWork.Site.Models.Event", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Desciption")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Slug")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CategoryId");
-
-                    b.ToTable("Events");
-                });
-
             modelBuilder.Entity("PutAVettoWork.Site.Models.Job", b =>
                 {
                     b.Property<int>("Id")
@@ -379,15 +347,6 @@ namespace PutAVettoWork.Site.Migrations
                     b.HasOne("PutAVettoWork.Site.Models.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("PutAVettoWork.Site.Models.Event", b =>
-                {
-                    b.HasOne("PutAVettoWork.Site.Models.Category", "Category")
-                        .WithMany()
-                        .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

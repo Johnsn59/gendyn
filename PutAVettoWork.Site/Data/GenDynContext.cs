@@ -17,6 +17,6 @@ namespace PutAVettoWork.Site.Data
         }
         public DbSet<Page> Pages { get; set; }
         public DbSet<Category> Categories { get; set; }
-        public DbSet<Event> Events { get; set; }
+        public DbSet<EventPost> EventPosts { get; set; }
     }
 }
