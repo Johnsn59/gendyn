@@ -18,9 +18,6 @@
             <th>
                 Desciption
             </th>
-            <th>
-                Category
-            </th>
             <th></th>
         </tr>
     </thead>
@@ -31,10 +28,7 @@
                 @item.Name
             </td>
             <td>
-                @item.Desciption
-            </td>
-            <td>
-                @item.Category.Name
+                @Html.Raw(item.Desciption)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

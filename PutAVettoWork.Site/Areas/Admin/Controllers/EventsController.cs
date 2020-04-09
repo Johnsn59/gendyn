@@ -16,7 +16,6 @@ namespace PutAVettoWork.Site.Areas.Admin.Controllers
 
         private readonly GenDynContext context;
 
-
         public EventsController(GenDynContext context)
         {
             this.context = context;
@@ -40,40 +39,101 @@ namespace PutAVettoWork.Site.Areas.Admin.Controllers
         //POST /admin/pages/create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(EventPost page)
-            //Here is where I realized I messed up naming this event
+        public async Task<IActionResult> Create(EventPost eventPost)
+            //Here is where I realized I messed up naming this event *Fixed
         {
             if (ModelState.IsValid)
             {
-                page.Slug = page.Name.ToLower().Replace(" ", "-");
+                eventPost.Slug = eventPost.Name.ToLower().Replace(" ", "-");
 
-                var slug = await context.Pages.FirstOrDefaultAsync(x => x.Slug == page.Slug);
+                var slug = await context.EventPosts.FirstOrDefaultAsync(x => x.Slug == eventPost.Slug);
                 if (slug != null)
                 {
-                    ModelState.AddModelError("", "The page alreay exists");
-                    return View(page);
+                    ModelState.AddModelError("", "This event alreay exists");
+                    return View(eventPost);
                 }
 
-                context.Add(page);
+                context.Add(eventPost);
                 await context.SaveChangesAsync();
 
-                TempData["Success"] = "The page has been added!";
+                TempData["Success"] = "The event has been added!";
 
 
                 return RedirectToAction("Index");
             }
-            return View(page);
+            return View(eventPost);
         }
 
         //GET /admin/events/details/id
         public async Task<IActionResult> Details(int id)
         {
-            EventPost page = await context.EventPosts.FindAsync(id);
-            if (page == null)
+            EventPost eventPost = await context.EventPosts.Include(x => x.Category).FirstOrDefaultAsync(x => x.Id == id);
+            if (eventPost == null)
             {
                 return NotFound();
             }
-            return View(page);
+            return View(eventPost);
+        }
+
+        //GET /admin/events/edit/id
+        public async Task<IActionResult> Edit(int id)
+        {
+            EventPost eventPost = await context.EventPosts.FindAsync(id);
+            if (eventPost == null)
+            {
+                return NotFound();
+            }
+
+            ViewBag.CategoryId = new SelectList(context.Categories.OrderBy(x => x.Sorting), "Id", "Name", eventPost.CategoryId);
+            return View(eventPost);
+        }
+
+        //POST /admin/pages/edit/id
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int Id, EventPost eventPost)
+        //Here is where I realized I messed up naming this event *Fixed
+        {
+            ViewBag.CategoryId = new SelectList(context.Categories.OrderBy(x => x.Sorting), "Id", "Name", eventPost.CategoryId);
+
+            if (ModelState.IsValid)
+            {
+                eventPost.Slug = eventPost.Name.ToLower().Replace(" ", "-");
+
+                var slug = await context.EventPosts.Where(x => x.Id != Id).FirstOrDefaultAsync(x => x.Slug == eventPost.Slug);
+                if (slug != null)
+                {
+                    ModelState.AddModelError("", "This event alreay exists");
+                    return View(eventPost);
+                }
+
+                context.Update(eventPost);
+                await context.SaveChangesAsync();
+
+                TempData["Success"] = "The event has been updated!";
+
+
+                return RedirectToAction("Index");
+            }
+            return View(eventPost);
+        }
+
+        //GET /admin/Events/delete/id
+        public async Task<IActionResult> Delete(int id)
+        {
+            EventPost eventPost = await context.EventPosts.FindAsync(id);
+            if (eventPost == null)
+            {
+                TempData["Error"] = "This event does not exist!";
+            }
+            else
+            {
+                context.EventPosts.Remove(eventPost);
+                await context.SaveChangesAsync();
+
+                TempData["Success"] = "The event has been deleted!";
+            }
+            return RedirectToAction("Index");
         }
 
     }
