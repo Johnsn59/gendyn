@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Put Veterans To Work</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+
+    <nav class="navbar sticky-top navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Put Veterans To Work</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav flex-grow-1">
+                    @await Component.InvokeAsync("Main")
+                </ul>
+                <ul class="nav navbar-nav ml-auto">
+                    @if (User?.Identity?.IsAuthenticated ?? false)
+                    {
+                        <li class="nav-item">
+                            <a asp-controller="Account" asp-action="Edit" class="btn btn-primary">My Account</a>
+                        </li>
+                        <li class="nav-item ml-1">
+                            <a asp-controller="Account" asp-action="Logout" class="btn btn-danger">Hi, @User.Identity.Name, Log out</a>
+                        </li>
+                        @if (User.IsInRole("admin") || User.IsInRole("editor"))
+                        {
+                            <li class="nav-item ml-1">
+                                <a asp-area="Admin" asp-controller="Pages" asp-action="Index" class="btn btn-success">Admin Area</a>
+                            </li>
+                        }
+                    }
+                    else
+                    {
+                        <li class="nav-item navright">
+                            <a asp-controller="Account" asp-action="Login" class="nav-link text-dark">Log in</a>
+                        </li>
+                        @*<li class="nav-item ml-1 navright">
+                                <a asp-controller="Account" asp-action="Register" class="btn btn-primary">Register</a>
+                            </li>*@
+                    }
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="container">
+        <partial name="_NotificationPartial" />
+        @RenderBody()
+    </div>
+
+
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2020 - Put Veterans To Work
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

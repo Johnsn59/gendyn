@@ -4,5 +4,20 @@
     ViewData["Title"] = "Events";
 }
 
-<h1 class="display-4 pb-5">Index</h1>
+<div class="row">
+    @foreach(var item in Model)
+    {
+
+    <div class="col-4">
+        <h4>@item.Name</h4>
+        <div>
+            @Html.Raw(item.Desciption)
+        </div>
+        <a asp-controller="EventPosts" asp-action="EventPost" asp-route-id="@item.Id" class="btn btn-outline-dark">Read More</a>
+    </div>
+
+    }
+
+
+</div>
 

@@ -1,0 +1,16 @@
+﻿@model PutAVettoWork.Site.Models.EventPost
+
+@{
+    ViewData["Title"] = "Eventpost";
+}
+
+<div>
+    <h3>@Model.Name</h3>
+    <hr />
+    
+    @Html.Raw(Model.Content)
+
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
