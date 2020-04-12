@@ -156,7 +156,7 @@ body {
 }
 
 #header {
-    background: url(https://images.unsplash.com/photo-1464660756002-dd9f9a92b01b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=734&q=80);
+    background: url(https://images.pexels.com/photos/54098/us-army-soldiers-army-men-54098.jpeg);
     background-position: center;
     background-size: cover;
 }
@@ -166,6 +166,7 @@ body {
     0px 8px 13px rgba(0, 0, 0, 0.1),
     0px 18px 23px rgba(0, 0, 0, 0.1);
     color: whitesmoke;
+
 }
 
 #header h3 {
@@ -223,3 +224,20 @@ hr {
     float: right;
 }
 
+/*Event CSS*/
+
+#cardlist {
+    padding: 10px;
+}
+
+#eventcard:hover {
+    background-color: #DCDCDC;
+}
+
+/* Style the counter cards */
+#eventcard {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 16px;
+    text-align: center;
+    background-color: #f1f1f1;
+}

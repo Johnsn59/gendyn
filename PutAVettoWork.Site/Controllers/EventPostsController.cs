@@ -23,7 +23,7 @@ namespace PutAVettoWork.Site.Controllers
         public async Task<IActionResult> Index()
         {
 
-            return View("_SecondaryLayout.cshtml",await context.EventPosts.OrderByDescending(x => x.Id).ToListAsync());
+            return View(await context.EventPosts.OrderByDescending(x => x.Id).ToListAsync());
         }
 
         // GET /eventposts/id

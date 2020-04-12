@@ -4,13 +4,15 @@
     ViewData["Title"] = "Eventpost";
 }
 
-<div>
-    <h3>@Model.Name</h3>
-    <hr />
-    
-    @Html.Raw(Model.Content)
+<div class="col-10" id="cardlist">
+    <div id="eventcard">
+        <h3>@Model.Name</h3>
+        @Html.Raw(Model.Desciption)
 
+        <a asp-controller="EventPosts" asp-action="Blog" asp-route-id="@Model.Id" class="btn btn-outline-info">Read More</a>
+    </div>
 </div>
+
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
