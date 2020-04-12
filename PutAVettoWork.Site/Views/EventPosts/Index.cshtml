@@ -4,16 +4,23 @@
     ViewData["Title"] = "Events";
 }
 
+<div style="padding-top: 20px; padding-left: 10px; padding-bottom: 25px;">
+    <h1>Upcoming Events</h1>
+    <p>Check out all of the events coming soon! If there are none, check back again soon!</p>
+
+</div>
+
 <div class="row">
     @foreach(var item in Model)
     {
 
-    <div class="col-4">
-        <h4>@item.Name</h4>
-        <div>
+    <div class="col-10" id="cardlist">
+        <div id="eventcard">
+            <h3>@item.Name</h3>
             @Html.Raw(item.Desciption)
+
+            <a asp-controller="EventPosts" asp-action="Eventpost" asp-route-id="@item.Id" class="btn btn-outline-info">Read More</a>
         </div>
-        <a asp-controller="EventPosts" asp-action="EventPost" asp-route-id="@item.Id" class="btn btn-outline-dark">Read More</a>
     </div>
 
     }
