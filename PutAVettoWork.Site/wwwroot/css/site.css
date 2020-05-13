@@ -56,6 +56,17 @@ html {
     }
 }
 
+/*Mobile Devices*/
+@media (min-width: 576px) {
+    html {
+        font-size: 12px;
+    }
+    .container {
+        max-width: 100%;
+    }
+
+}
+
 .border-top {
     border-top: 1px solid #e5e5e5;
 }
