@@ -9,7 +9,40 @@ a.navbar-brand {
 .navbar {
     background-color: black;
 }
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+.bg-dark {
+    background-color: black;
+}
+a.nav-link:hover {
+    /*opacity: .3 !important;*/
+    background-color: #5a5656;
+}
 
+.navbar-brand {
+    font-weight: 900;
+    color: white;
+    background-color: black;
+}
+/*.navbar-toggler {
+    color: black;
+    text-align: right;
+    background-color: #393e46;
+    
+}*/
+/*button.navbar-toggler {
+    color: white;
+    text-align: right;
+    background-color: white;
+}*/
+button.navbar-toggler-icon {
+    color: white;
+    text-align: right;
+    background-color: lightcoral
+}
 header {
     background: url(https://images.unsplash.com/photo-1464660756002-dd9f9a92b01b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=734&q=80);
     background-position: center;
@@ -36,12 +69,6 @@ a {
     color: #fff;
     background-color: #1b6ec2;
     border-color: azure;
-}
-
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-    color: #fff;
-    background-color: #1b6ec2;
-    border-color: #1861ac;
 }
 
 /* Sticky footer styles
@@ -114,10 +141,6 @@ table.sorting tr:not(.home) {
     border: 1px dashed #ccc;
 }
 
-a.nav-link:hover {
-    /*opacity: .3 !important;*/
-    background-color: #5a5656;
-}
 
 div.ajaxbg {
     background: rgba(255,255,255, .8);
@@ -191,14 +214,6 @@ card {
     margin-top: 10px;
 }
 
-.navbar {
-    background-color: black;
-}
-
-.navbar-brand {
-    font-weight: 900;
-    color: white;
-}
 
 .nav-link {
     color: white;
@@ -219,13 +234,13 @@ hr {
     border-radius: 100%;
 }
  
-.nav .btn {
+/*.nav .btn {
     color: white;
-}
+}*/
 
-.navright {
+/*.navright {
     float: right;
-}
+}*/
 
 /*Event CSS*/
 
