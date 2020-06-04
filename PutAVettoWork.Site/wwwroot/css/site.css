@@ -313,4 +313,7 @@ hr {
     margin-top: 25px;
     padding: 10px 15px;
     text-transform: uppercase;
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    text-decoration: none;
 }
