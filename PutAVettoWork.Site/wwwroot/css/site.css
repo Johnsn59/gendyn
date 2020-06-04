@@ -54,9 +54,6 @@ li {
 .lead {
     text-align: center;
 }
-card {
-    margin-top: 10px;
-}
 
 
 
@@ -210,19 +207,9 @@ body {
     text-align: center;
 }
 
-card {
-    margin-top: 10px;
-}
-
 
 .nav-link {
     color: white;
-}
-
-.card h5 {
-    color: black;
-    text-align: center;
-    text-transform: uppercase;
 }
 
 hr {
@@ -258,4 +245,72 @@ hr {
     padding: 16px;
     text-align: center;
     background-color: #C0C0C0;
+}
+
+/*Home page card flip*/
+
+.flip-card {
+    background-color: transparent;
+    width: 300px;
+    height: 300px;
+    perspective: 1000px;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.flip-card-front {
+    background-color: #bbb;
+    color: black;
+    background-size: cover;
+}
+
+.flip-card-back {
+    background-color: #bbb;
+    color: white;
+    transform: rotateY(180deg);
+    text-align: center;
+    margin: auto;
+    background-size: cover;
+}
+
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    width: 85%;
+}
+
+.flip-box-button {
+    background-color: transparent;
+    border: 2px solid #fff;
+    border-radius: 2px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 25px;
+    padding: 15px 20px;
+    text-transform: uppercase;
 }
